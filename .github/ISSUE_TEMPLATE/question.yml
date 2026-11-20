@@ -1,0 +1,53 @@
+# The fields are the app's (matter-toolbox lib/feedback.py KINDS["question"]): an id is the link's
+# query parameter, a label the "###" heading the app writes. Change both together.
+name: Question
+description: How do I ... ? What does this do? Where is ... ?
+labels: ["kind:question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        **This repository is public: leave out client and project names, drawings, model files,
+        file paths under your user folder and email addresses.**
+        The chat in SYNCIT answers most questions about the app straight away: try it first.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: >-
+        syncit (the app's pages, tasks and exports), matter-toolbox (the window, navbar, settings
+        and project list), chat (the chat panel), calculations (columns, strut and tie, pile caps),
+        or not sure.
+      placeholder: syncit
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      placeholder: How do I add a storey after the PDF Import?
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The page you were on, if it is about one. Not the project's name.
+  - type: textarea
+    id: tried
+    attributes:
+      label: What did you try or read?
+      description: The user guide page, the setting or the button you tried first.
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Anything that helps and is not confidential.
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: >-
+        The chat fills this in. Otherwise: the app's version from the exe's name
+        (SYNCIT_v1.1.0.18_production) and your Windows version.
+      render: text

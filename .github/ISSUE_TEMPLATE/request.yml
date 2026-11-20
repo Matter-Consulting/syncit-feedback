@@ -1,0 +1,58 @@
+# The fields are the app's (matter-toolbox lib/feedback.py KINDS["request"]): an id is the link's
+# query parameter, a label the "###" heading the app writes. Change both together.
+name: Feature request
+description: Something SYNCIT should do, or do differently.
+labels: ["kind:request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        **This repository is public: leave out client and project names, drawings, model files,
+        file paths under your user folder and email addresses.**
+        The chat in SYNCIT can write this for you and shows you the text before it is sent.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: >-
+        syncit (the app's pages, tasks and exports), matter-toolbox (the window, navbar, settings
+        and project list), chat (the chat panel), calculations (columns, strut and tie, pile caps),
+        or not sure.
+      placeholder: syncit
+    validations:
+      required: true
+  - type: textarea
+    id: want
+    attributes:
+      label: What would you like the app to do?
+      placeholder: Copy a column type to a new mark, with its bars and ligatures.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What would it save you?
+      description: The time, the step or the mistake it saves.
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Where in the app it belongs, if anywhere. Not the project's name.
+      placeholder: Columns (a folder page)
+  - type: textarea
+    id: today
+    attributes:
+      label: How do you do it today?
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Anything that helps and is not confidential.
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: >-
+        The chat fills this in. Otherwise: the app's version from the exe's name
+        (SYNCIT_v1.1.0.18_production) and your Windows version.
+      render: text

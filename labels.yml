@@ -1,0 +1,48 @@
+# The labels of this repository. labels.sh creates them (gh label create ... --force).
+# kind:* comes from the form (or the app's hidden line), area:* from the "Area" answer,
+# both added by .github/workflows/label-new-items.yml. The rest are a maintainer's.
+
+# What it is
+- name: kind:bug
+  color: d73a4a
+  description: Something in the app does not work as it should
+- name: kind:request
+  color: a2eeef
+  description: Something the app should do, or do differently
+- name: kind:question
+  color: d876e3
+  description: How do I ... / what does this do?
+- name: kind:concern
+  color: fbca04
+  description: A concern, a comment or a suggestion
+
+# Which part of the app (and so which repository's maintainers)
+- name: area:syncit
+  color: 0e8a16
+  description: The app's pages, tasks and exports (the syncit repository)
+- name: area:matter-toolbox
+  color: 1d76db
+  description: The window, navbar, settings and project list (the matter-toolbox repository)
+- name: area:chat
+  color: 5319e7
+  description: The chat panel and what it can do (both repositories)
+- name: area:calculations
+  color: c5def5
+  description: Columns, strut and tie, pile caps (the calculation repositories, through syncit)
+
+# Where it stands
+- name: needs-triage
+  color: ededed
+  description: New, nobody has read it yet
+- name: planned
+  color: 0052cc
+  description: Accepted and written into a repository's TODO list
+- name: waiting-for-reporter
+  color: fef2c0
+  description: We asked the reporter a question
+- name: duplicate
+  color: cfd3d7
+  description: Already reported in another item
+- name: out-of-scope
+  color: e4e669
+  description: Not something this app can change

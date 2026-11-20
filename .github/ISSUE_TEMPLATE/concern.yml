@@ -1,0 +1,52 @@
+# The fields are the app's (matter-toolbox lib/feedback.py KINDS["concern"]): an id is the link's
+# query parameter, a label the "###" heading the app writes. Change both together.
+name: Concern or suggestion
+description: A concern, a comment or a suggestion about the app.
+labels: ["kind:concern", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        **This repository is public: leave out client and project names, drawings, model files,
+        file paths under your user folder and email addresses.**
+        A concern about a calculation's result on a job goes to your project lead first.
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: >-
+        syncit (the app's pages, tasks and exports), matter-toolbox (the window, navbar, settings
+        and project list), chat (the chat panel), calculations (columns, strut and tie, pile caps),
+        or not sure.
+      placeholder: not sure
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: What is it about?
+      placeholder: The chat changed a settings file without saying which one.
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The page it is about, if any. Not the project's name.
+  - type: textarea
+    id: detail
+    attributes:
+      label: Tell us more
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Anything that helps and is not confidential.
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: >-
+        The chat fills this in. Otherwise: the app's version from the exe's name
+        (SYNCIT_v1.1.0.18_production) and your Windows version.
+      render: text

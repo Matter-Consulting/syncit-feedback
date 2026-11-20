@@ -1,0 +1,44 @@
+# Labels every new item by its kind and its area, however it was filed.
+#
+# A form adds its own kind label and needs-triage, but only GitHub's web form does that, and
+# an engineer may write anything in Area. An issue the app sent with `gh` comes with no
+# labels at all: GitHub applies labels only from someone who may label this repository. So
+# this reads the body instead: the "### Area" section every form and the app write, and the
+# hidden line the app adds to what it sends with gh:
+#   <!-- syncit-feedback kind=bug area=syncit -->
+# It runs with this repository's own token. The app holds none.
+name: Label new items
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label by kind and area
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || "";
+            const kinds = ["bug", "request", "question", "concern"];
+            const areas = ["syncit", "matter-toolbox", "chat", "calculations"];
+            const labels = new Set(["needs-triage"]);
+            const marker = body.match(/<!--\s*syncit-feedback\s+([^>]*?)\s*-->/);
+            if (marker) {
+              const kind = (marker[1].match(/kind=([\w-]+)/) || [])[1];
+              if (kinds.includes(kind)) labels.add(`kind:${kind}`);
+            }
+            const area = body.match(/^###\s*Area\s*\n+\s*([^\n]+)/m);
+            if (area) {
+              const text = area[1].toLowerCase();
+              const hit = areas.find(a => text.includes(a)) || (text.includes("calc") ? "calculations" : null);
+              if (hit) labels.add(`area:${hit}`);
+            }
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [...labels],
+            });
